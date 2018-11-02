@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>On Hover Icons - CSS</title>
+<style type="text/css">
+
+/*HEADER CONTAINS THE DESKTOP MENU LINKS WHILE THE NAV TAGS HOLD THE HAMBURGER MENU. MUCH EASIER TO MAKE TWO MENUS THAN TO CHANGE THE POSITION OF THE HEADER. THIS WHOLE PRODUCT IS MADE WITHOUT JAVASCRIPT, HENCE THE STRANGE CODING. THIS IS ARGUABLY FASTER THAN USING JS, SO THATS THE RATIONALE FOR THIS SETUP. FOR EXAMPLE OF THIS, SEE WWW.EXGEO.RU*/
+
+header {
+	color: lightgray;
+	position: fixed;
+	top: 0;
+	right: 0;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-right: 40px;
+	text-transform: uppercase;
+	padding: 10px;
+	word-spacing: 10px;
+	letter-spacing: 3px;
+}
+
+/*SETS THE COLOR OF THE LINKS IN THE NAVBAR AND THE HAMBURGER. REMOVES UNDERLINES. CHANGE COLOR AND HOVER AS NEEDED*/
+
+a {
+	color: lightgray;
+	transition: color 0.3s ease;
+}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover
+{
+  color: #9C8B60;
+}
+
+/*HAMBURGER MENU TOGGLES BEGIN HERE. DO NOT CHANGE UNLESS YOU KNOW WHAT YOU'RE DOING*/
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 40px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -15px;
+  cursor: pointer;
+  opacity: 0; 
+  z-index: 2; 
+  -webkit-touch-callout: none;
+}
+
+/*SPANS NEEDED TO CREATE THE ACTUAL HAMBURGER LINES*/
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/*TIDY ANIMATION TO TRANSFORM SPANS INTO A CROSS*/
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: lightgray;
+}
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*HAMBURGER POSITIONING - ADJUST AS NEEDED FOR POSITION ON RIGHT OR CENTER*/
+#menu
+{
+  position: absolute;
+  width: 175px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  text-transform: uppercase;
+  background: black;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased; 
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*SLIDES HAMBURGER FROM LEFT*/
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+/*HIDES NAV (HAMBURGER) PRIOR TO MEDIA QUERY AND INLINES THE DESKTOP MENU*/
+
+li {
+	display: inline;
+}
+ nav {
+	visibility: hidden;
+}
+/*CSS FOR ICON HOVER (ON/OFF ONLY) BEGINS HERE*/
+	.main {
+  margin-top: 20vh;
+}
+.image_off, #fbmain:hover .image_on{
+   display:none;
+   transition: 0.3s ease;
+
+}
+.image_on, #fbmain:hover .image_off{
+   display:inline;
+   transition: 0.3s ease;
+
+}
+.image_off, #igmain:hover .image_on{
+   display:none;
+   transition: 0.3s ease;
+
+}
+.image_on, #igmain:hover .image_off{
+   display:inline;
+   transition: 0.3s ease;
+}
+.image_off, #ytmain:hover .image_on{
+   display:none;
+   transition: 0.3s ease;
+
+}
+.image_on, #ytmain:hover .image_off{
+   display:inline;
+   transition: 0.3s ease;
+}
+.image_off, #ptmain:hover .image_on{
+   display:none;
+   transition: 0.3s ease;
+
+}
+.image_on, #ptmain:hover .image_off{
+   display:inline;
+   transition: 0.3s ease;
+}
+@media only screen and (max-width: 800px) {
+	
+	li {
+		display: block;
+	}
+	header {
+		display: none;
+	}
+	nav {
+		visibility: visible; 
+	}
+  #menu img{
+    margin-top: 15px;
+    margin-right: 10px;
+    display: inline-block;
+  }
+}
+</style>
+
+
+</head>
+<body>
+<!--MAIN MENU FOR DESKTOP/TABLET_HORIZONTAL.. SET PIXEL WIDTH IN MEDIA QUERY FOR SMOOTH TRANSITION TO HAMBURGER-->
+<header>
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Services</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#"> Contact</a></li>
+		<li><a href="#SocialMediaLink" id="fbmain" target="_blank"> <img src="#PlaceHolderIcon" class="image_on" style="max-width: 18px;"><img src="#OnHoverIcon" class="image_off" style="max-width: 18px; "></a></li>  
+		<li><a href="#SocialMediaLink" id="igmain" target="_blank"><img src="#PlaceHolderIcon" class="image_on" style="max-width: 18px;"><img src="#OnHoverIcon" class="image_off" style="max-width: 18px;"></a></li>
+    <li><a href="#SocialMediaLink" id="ytmain" target="_blank"><img src="#PlaceHolderIcon" class="image_on" style="max-width: 18px;"><img src="#OnHoverLink" class="image_off" style="max-width: 18px;"></a></li>
+    <li><a href="#SocialMediaLink" id="ptmain" target="_blank"><img src="#PlaceHolderIcon" class="image_on" style="max-width: 18px;"><img src="#OnHoverIcon" class="image_off" style="max-width: 18px;"></a></span></li>
+	</ul>
+</header>
+
+
+<!-- HAMBURGER MENU -->
+<nav role="navigation">
+  <div id="menuToggle">
+    <input type="checkbox" />
+    <span></span>
+    <span></span>
+    <span></span>
+    <!--HAMBURGER MENU DOES NOT USE ON HOVER BECAUSE THE MOBILE PLATFORM DOES NOT REQUIRE THIS FEATURE. YOU CAN ADD IT EASILY IN THE CSS ABOVE BY DUPLICATING THE IMAGE ON IMAGE OFF CODE-->
+    <ul id="menu">
+      <a href="#"><li>Home</li></a>
+      <a href="#"><li>Services</li></a>
+      <a href="#"><li>Products</li></a>
+      <a href="#"><li>About</li></a>
+      <a href="#"><li>Contact</li></a>
+      <a href="#SocialMediaLink"><img src="#PlaceHolderIconPath" style="max-width: 18px;"></a>
+      <a href="#SocialMediaLink"><img src="#PlaceHolderIconPath" style="max-width: 18px;"></a>
+      <a href="#SocialMediaLink"><img src="#PlaceHolderIconPath" style="max-width: 18px;"></a>
+      <a href="#SocialMediaLink"><img src="#PlaceHolderIconPath" style="max-width: 18px;"></a></span>
+    </ul>
+  </div>
+</nav>
+
+</body>
+</html>
